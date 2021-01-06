@@ -15,8 +15,8 @@ export interface RegistrationDetails {
 })
 export class RegisterComponent implements OnInit {
 
-  testVal = '';
-
+  confPass = '';
+  confEmail = '';
   user: RegistrationDetails = {
     username: '',
     email: '',
@@ -31,7 +31,22 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
+    if (!this.validate()){  // Early exit when validation fails
+      return;
+    }
+
     console.log(this.user);
+  }
+
+  validate(){
+    if (this.confEmail !== this.user.email){ 
+      alert("Emails do not match");
+      return false;
+    }
+
+    
+
+    return true;
   }
 
 }

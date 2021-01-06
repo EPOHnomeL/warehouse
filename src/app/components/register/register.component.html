@@ -1,38 +1,72 @@
 <div>
-<form #registerform="ngForm" (ngSubmit)="onSubmit()">
-<mat-card id="card">
-    <mat-card-header>Register</mat-card-header>
-    <mat-card-content>
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Username">
-        </mat-form-field><br/>
+    <form #registerform="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card id="card">
+        <h3>Register</h3>
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput
+                    type="text"
+                    id="username" 
+                    [(ngModel)]="user.username"
+                    name="user.username" 
+                    placeholder="Username">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Name">
-        </mat-form-field><br/>
+            <mat-form-field>
+                <input matInput
+                    type="text"
+                    id="name" 
+                    [(ngModel)]="user.name"
+                    name="user.name" 
+                    placeholder="Name">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Surname">
-        </mat-form-field><br/>
+            <mat-form-field>
+                <input matInput
+                    type="text"
+                    id="surname" 
+                    [(ngModel)]="user.surname"
+                    name="user.surname" 
+                    placeholder="Surname">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Email">
-        </mat-form-field><br/>
+            <mat-form-field>
+                <input matInput
+                    type="email"
+                    id="email" 
+                    [(ngModel)]="user.email" 
+                    name="user.email" 
+                    placeholder="Email">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Confirm Email">
-        </mat-form-field><br/>
+            <mat-form-field>
+                <input matInput
+                    type="email"
+                    id="confEmail" 
+                    [(ngModel)]="confEmail" 
+                    name="confEmail" 
+                    placeholder="Confirm Email">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Password">
-        </mat-form-field><br/>
+            <mat-form-field>
+                <input matInput
+                    type="password"
+                    id="password" 
+                    [(ngModel)]="user.password" 
+                    name="user.password" 
+                    placeholder="Password">
+            </mat-form-field><br/>
 
-        <mat-form-field class="example-full-width">
-            <input matInput placeholder="Confirm Password">
-        </mat-form-field><br/>
-        <button mat-raised-button color="accent" class="btn-block" type="submit">Register</button>
-    </mat-card-content>
-</mat-card>
-    
-</form>
+            <mat-form-field>
+                <input matInput
+                    type="password"
+                    id="confPass" 
+                    [(ngModel)]="confPass" 
+                    name="confPass" 
+                    placeholder="Confirm Password">
+            </mat-form-field><br/>
+            <button mat-raised-button color="accent" type="submit">Register</button>
+        </mat-card-content>
+    </mat-card>        
+    </form>
 </div>

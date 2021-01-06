@@ -1,14 +1,12 @@
 form{
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
     padding: 10px;
     height: 500px;
     width: 500px;
 }
 
-input{
-    width: auto;
-}
-
-div{
-
+mat-form-field{
+    width: 300px;
 }
