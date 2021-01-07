@@ -17,6 +17,7 @@ export class RegisterComponent implements OnInit {
 
   confPass = '';
   confEmail = '';
+
   user: RegistrationDetails = {
     username: '',
     email: '',
@@ -44,7 +45,22 @@ export class RegisterComponent implements OnInit {
       return false;
     }
 
-    
+    if(this.user.email.indexOf('@') === -1){
+      alert("Invalid email");
+      return false;
+    }
+
+    if(this.user.password !== this.confPass){
+      alert("Passwords do not match");
+      return false;
+    }
+
+    if(this.user.username.indexOf(' ') !== -1){
+      alert("Spaces in username");
+      return false;
+    }   
+
+    // How to check that all fields are filled?
 
     return true;
   }
