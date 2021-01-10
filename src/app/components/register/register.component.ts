@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService, Response } from '../../services/api.service';
 
 export interface RegistrationDetails {
   username: string;
-  name: string;
-  surname: string;
   email: string;
   password: string;
 }
@@ -21,12 +20,10 @@ export class RegisterComponent implements OnInit {
   user: RegistrationDetails = {
     username: '',
     email: '',
-    name: '',
     password: '',
-    surname: '',
   }
-
-  constructor() { }
+  
+  constructor(private apiService: ApiService) { }
 
   ngOnInit(): void {
   }
@@ -36,10 +33,31 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
+    // ....$ = observable
     console.log(this.user);
+
+    const request$ = this.apiService.createUser(this.user);
+    request$.subscribe((response: any) => {  // whats wrong here ? 
+      if(!response.success){
+        alert(response.message);
+        return;
+      }
+      console.log(response);
+      // ...code
+    });
   }
 
   validate(){
+
+    if(this.user.username === '' ||
+      this.user.password === '' ||
+      this.user.email === '' ||
+      this.confEmail === '' || 
+      this.confPass === ''){
+        alert("Please fill in all forms");
+        return false;   
+       }
+
     if (this.confEmail !== this.user.email){ 
       alert("Emails do not match");
       return false;
@@ -59,8 +77,6 @@ export class RegisterComponent implements OnInit {
       alert("Spaces in username");
       return false;
     }   
-
-    // How to check that all fields are filled?
 
     return true;
   }

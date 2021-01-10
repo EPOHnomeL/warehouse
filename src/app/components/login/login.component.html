@@ -1,1 +1,27 @@
-<p>login works!</p>
+<div>
+    <form #registerform="ngForm" (ngSubmit)="onSubmit()">
+    <mat-card id="card">
+        <h3>Log In</h3>
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput
+                    type="text"
+                    id="username" 
+                    [(ngModel)]="username"
+                    name="username" 
+                    placeholder="Username">
+            </mat-form-field><br/>
+
+            <mat-form-field>
+                <input matInput
+                    type="password"
+                    id="password" 
+                    [(ngModel)]="password"
+                    name="name" 
+                    placeholder="Password">
+            </mat-form-field><br/>
+            <button mat-raised-button color="accent" type="submit">Log In</button>
+        </mat-card-content>
+    </mat-card>        
+    </form>
+</div>
