@@ -27,7 +27,11 @@ export class ApiService {
   }
 
   login( user: RegistrationDetails){
-    return this.http.post(URL + '?class=Users&func=login', user );
+    return this.http.post(URL + '?class=Auth&func=login', user );
+  }
+
+  logout( user: RegistrationDetails ){
+    return this.http.post(URL + '?class=Auth&func=logout', user);
   }
 
 }

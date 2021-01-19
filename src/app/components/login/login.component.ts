@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiResponse, ApiService } from 'src/app/services/api.service';
+import { UserState, UserStateService } from 'src/app/state/user-state.service';
 import { RegistrationDetails } from '../register/register.component';
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
     role: ''
   }
 
-  constructor( private apiService: ApiService, private router: Router) { }
+  constructor( private apiService: ApiService, private router: Router, private userStateService: UserStateService ) { }
 
   ngOnInit(): void {
   }
@@ -34,9 +35,11 @@ export class LoginComponent implements OnInit {
         alert(response.message);
         return;
       }
+      // Set user state
+      this.userStateService.userState.username = response.values[0];
+      this.userStateService.userState.isLogin = true;
+      this.userStateService.userState.token = response.values[1];      
 
-      // Do some session stuff
-      // Do some token stuff
       alert(response.message);
       this.router.navigateByUrl("/products");
     });
