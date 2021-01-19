@@ -14,6 +14,7 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 
@@ -24,7 +25,8 @@ import { LoginComponent } from './components/login/login.component';
     HomeComponent,
     FooterComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,

@@ -47,6 +47,14 @@
                     name="confPass" 
                     placeholder="Confirm Password">
             </mat-form-field><br/>
+
+            <mat-form-field>
+                <mat-label>Select a role</mat-label>
+                <mat-select [(value)]="user.role">
+                  <mat-option value="cashier">Cashier</mat-option>
+                  <mat-option value="admin">Admin</mat-option>
+                </mat-select>
+              </mat-form-field><br>
             <button mat-raised-button color="accent" type="submit">Register</button>
         </mat-card-content>
     </mat-card>        

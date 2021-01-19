@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RegistrationDetails } from '../components/register/register.component';
+import { Observable } from 'rxjs';
 
 export const URL = 'http://api.warehouse/';
 
-export interface Response {
+export interface ApiResponse {
   success: boolean;
   message: string;
   values: [];
@@ -25,5 +26,8 @@ export class ApiService {
     return this.http.post(URL + '?class=Users&func=createUser', newUser );
   }
 
+  login( user: RegistrationDetails){
+    return this.http.post(URL + '?class=Users&func=login', user );
+  }
 
 }

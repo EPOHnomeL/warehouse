@@ -1,10 +1,13 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ApiService, Response } from '../../services/api.service';
+import { Router } from '@angular/router';
+import { ApiService, ApiResponse } from '../../services/api.service';
 
 export interface RegistrationDetails {
   username: string;
   email: string;
   password: string;
+  role: string;
 }
 
 @Component({
@@ -21,9 +24,10 @@ export class RegisterComponent implements OnInit {
     username: '',
     email: '',
     password: '',
+    role: ''
   }
   
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -32,23 +36,21 @@ export class RegisterComponent implements OnInit {
     if (!this.validate()){  // Early exit when validation fails
       return;
     }
-
-    // ....$ = observable
-    console.log(this.user);
-
+    
     const request$ = this.apiService.createUser(this.user);
-    request$.subscribe((response: any) => {  // whats wrong here ? 
+
+    request$.subscribe((response: any) => {  // TODO ApiResponse 
       if(!response.success){
         alert(response.message);
         return;
       }
-      console.log(response);
-      // ...code
+      alert("User successfully created");
+      this.router.navigateByUrl('/login'); // go to login page
     });
   }
 
+  // Validates all user input
   validate(){
-
     if(this.user.username === '' ||
       this.user.password === '' ||
       this.user.email === '' ||
@@ -76,7 +78,12 @@ export class RegisterComponent implements OnInit {
     if(this.user.username.indexOf(' ') !== -1){
       alert("Spaces in username");
       return false;
-    }   
+    }  
+    
+    if(this.user.role === ''){
+      alert("Please select a role");
+      return false;
+    }
 
     return true;
   }
