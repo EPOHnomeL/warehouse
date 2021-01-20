@@ -40,12 +40,13 @@ export class LoginComponent implements OnInit {
       this.userStateService.userState = {
         username : response.values['username'],
         token : response.values['token'], 
+        email: response.values['email'],
         isLogin : true,
       };   
 
       alert(response.message);  // TODO remove
       // Navigate to products
-      this.router.navigateByUrl("/products");
+      this.router.navigateByUrl("/profile");
     });
   }
 

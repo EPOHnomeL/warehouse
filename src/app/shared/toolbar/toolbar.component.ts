@@ -11,14 +11,12 @@ import { UserStateService } from 'src/app/state/user-state.service';
 })
 export class ToolbarComponent implements OnInit {
   
-  isLogin: boolean = false;
-  username: string = '';
+  // isLogin: boolean = false;
+  // username: string = '';
 
   constructor( public userStateService: UserStateService, private apiService:ApiService, private router: Router ) { }
 
   ngOnInit(): void {
-    this.isLogin = this.userStateService.userState.isLogin;
-    this.username = this.userStateService.userState.username;
   }
 
   logoutClick(){

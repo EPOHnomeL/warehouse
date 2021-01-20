@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserStateService } from 'src/app/state/user-state.service';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  username: string = '';
+  email: string = '';
+
+  constructor( private userStateService: UserStateService) { }
 
   ngOnInit(): void {
+    this.username = this.userStateService.userState.username;
+    this.email =  this.userStateService.userState.email;
+  }
+
+  onSubmit(){
+    // autherize user
+    // call update user
+
   }
 
 }

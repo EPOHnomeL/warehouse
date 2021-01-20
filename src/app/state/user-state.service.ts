@@ -4,6 +4,7 @@ export interface UserState{
   username: string;
   isLogin: boolean;
   token: string;
+  email: string;
 }
 
 @Injectable({
@@ -15,7 +16,8 @@ export class UserStateService {
   userState: UserState = {
     username: '',
     isLogin: false,
-    token: ''
+    token: '',
+    email: '',
   } 
 
   constructor() { }
@@ -24,7 +26,8 @@ export class UserStateService {
     this.userState = {
     username: '',
     isLogin: false,
-    token: ''
+    token: '',
+    email: '',
     }   
   }
 }

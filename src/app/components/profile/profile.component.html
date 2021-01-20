@@ -1,3 +1,28 @@
-<h1>Here is the user's information</h1>
+<div>
+    <form #updateDetailsForm="ngForm" (ngSubmit)="onSubmit()">
+        <mat-card>
+            <h3>Update User Details</h3>
+            <mat-card-content>
+                <mat-form-field>
+                    <input matInput
+                        type="text"
+                        id="username" 
+                        [(ngModel)]="username"
+                        name="username" 
+                        placeholder="Username">
+                </mat-form-field><br>
 
-<!-- name and email autocomplete -->
+                <mat-form-field>
+                    <input matInput
+                        type="text"
+                        id="email" 
+                        [(ngModel)]="email"
+                        name="email" 
+                        placeholder="Email">
+                </mat-form-field><br>
+            
+                <button mat-raised-button color="accent" type="submit">Update</button>
+            </mat-card-content>
+        </mat-card>
+    </form>
+</div>
