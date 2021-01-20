@@ -10,24 +10,20 @@ import { UserStateService } from 'src/app/state/user-state.service';
   styleUrls: ['./toolbar.component.scss']
 })
 export class ToolbarComponent implements OnInit {
-
-  user: RegistrationDetails = {
-    username: '',
-    email: '',
-    password: '',
-    role: ''
-  }
+  
+  isLogin: boolean = false;
+  username: string = '';
 
   constructor( public userStateService: UserStateService, private apiService:ApiService, private router: Router ) { }
 
   ngOnInit(): void {
+    this.isLogin = this.userStateService.userState.isLogin;
+    this.username = this.userStateService.userState.username;
   }
 
   logoutClick(){
 
-    this.user.username =  this.userStateService.userState.username;
-
-    const request$ = this.apiService.logout( this.user );
+    const request$ = this.apiService.logout( this.userStateService.userState.username );
 
     request$.subscribe((response: any) =>{
       if(!response.success){
@@ -36,12 +32,9 @@ export class ToolbarComponent implements OnInit {
       }
 
       // Clear user state
-      this.userStateService.userState = {
-        username: '',
-        isLogin: false,
-        token: ''
-      } 
-      alert(response.message);
+      this.userStateService.clearUserState();
+      alert(response.message);  // TODO remove
+      // Navigate to home
       this.router.navigateByUrl("/home");
     });
   }

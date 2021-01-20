@@ -11,6 +11,7 @@ export interface UserState{
 })
 export class UserStateService {
 
+  // Initialize userState
   userState: UserState = {
     username: '',
     isLogin: false,
@@ -18,4 +19,12 @@ export class UserStateService {
   } 
 
   constructor() { }
+
+  clearUserState(){
+    this.userState = {
+    username: '',
+    isLogin: false,
+    token: ''
+    }   
+  }
 }

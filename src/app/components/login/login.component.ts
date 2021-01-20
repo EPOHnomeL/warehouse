@@ -31,16 +31,20 @@ export class LoginComponent implements OnInit {
     const request$ = this.apiService.login(this.user);
 
     request$.subscribe((response: any) =>{
+      // Error handling
       if(!response.success){
         alert(response.message);
         return;
       }
       // Set user state
-      this.userStateService.userState.username = response.values[0];
-      this.userStateService.userState.isLogin = true;
-      this.userStateService.userState.token = response.values[1];      
+      this.userStateService.userState = {
+        username : response.values['username'],
+        token : response.values['token'], 
+        isLogin : true,
+      };   
 
-      alert(response.message);
+      alert(response.message);  // TODO remove
+      // Navigate to products
       this.router.navigateByUrl("/products");
     });
   }

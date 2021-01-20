@@ -2,7 +2,7 @@
     <a routerLink="/home-page" routerLinkActive="active"><span>Warehouse</span></a>
     <span class="spacer"></span>
 
-    <div layout="row" layout-align="center center" *ngIf="userStateService.userState.isLogin === false">        
+    <div layout="row" layout-align="center center" *ngIf="!isLogin">        
         
         <a routerLink="/login" routerLinkActive="active">
             <button mat-raised-button color="accent">Log In</button>
@@ -15,10 +15,10 @@
         </a>
     </div>
 
-    <div layout="row" layout-align="center center" *ngIf="userStateService.userState.isLogin === true">        
+    <div layout="row" layout-align="center center" *ngIf="isLogin">        
         
-        <a routerLink="/register" routerLinkActive="active">
-            <span>Logged in as: {{userStateService.userState.username}}</span>
+        <a routerLink="/profile" routerLinkActive="active">
+            <span>Logged in as: {{username}}</span>
         </a>      
         
         <div layout="row" class="divider"></div>

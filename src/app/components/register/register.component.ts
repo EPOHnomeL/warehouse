@@ -44,9 +44,10 @@ export class RegisterComponent implements OnInit {
         alert(response.message);
         return;
       }
-      alert("User successfully created");
-      this.router.navigateByUrl('/login'); // go to login page
     });
+    
+    alert("User successfully created");
+    this.router.navigateByUrl('/login'); // go to login page
   }
 
   // Validates all user input

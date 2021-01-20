@@ -30,8 +30,8 @@ export class ApiService {
     return this.http.post(URL + '?class=Auth&func=login', user );
   }
 
-  logout( user: RegistrationDetails ){
-    return this.http.post(URL + '?class=Auth&func=logout', user);
+  logout( usernameIn: string ){
+    return this.http.post(URL + '?class=Auth&func=logout', { username : usernameIn });
   }
 
 }
