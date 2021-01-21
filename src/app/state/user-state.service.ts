@@ -1,26 +1,28 @@
 import { Injectable } from '@angular/core';
-
-export interface UserState{
-  username: string;
-  isLogin: boolean;
-  token: string;
-  email: string;
-}
+import { BehaviorSubject } from 'rxjs';
+import { User } from '../components/register/register.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserStateService {
-
+  
   // Initialize userState
-  userState: UserState = {
+  private userState: User = {
     username: '',
     isLogin: false,
     token: '',
     email: '',
   } 
 
+  userState$: BehaviorSubject<User> = new BehaviorSubject<User>(this.userState);
+
   constructor() { }
+
+  setUserState(userStateIn: User){
+    this.userState = userStateIn;
+    this.userState$.next(this.userState);
+  }
 
   clearUserState(){
     this.userState = {
@@ -28,6 +30,7 @@ export class UserStateService {
     isLogin: false,
     token: '',
     email: '',
-    }   
+    }
+    this.userState$.next(this.userState);   
   }
 }

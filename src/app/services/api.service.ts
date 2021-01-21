@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { RegistrationDetails } from '../components/register/register.component';
+import { User } from '../components/register/register.component';
 import { Observable } from 'rxjs';
 
 export const URL = 'http://api.warehouse/';
@@ -22,16 +22,20 @@ export class ApiService {
     return this.http.get(URL + '?class=Users&func=getAllUsers');
   }
 
-  createUser(newUser: RegistrationDetails){
-    return this.http.post(URL + '?class=Users&func=createUser', newUser );
+  createUser( user: User ){
+    return this.http.post(URL + '?class=Users&func=createUser', user );
   }
 
-  login( user: RegistrationDetails){
+  login( user: User ){
     return this.http.post(URL + '?class=Auth&func=login', user );
   }
 
   logout( usernameIn: string ){
-    return this.http.post(URL + '?class=Auth&func=logout', { username : usernameIn });
+    return this.http.post(URL + '?class=Auth&func=logout', { username: usernameIn });
+  }
+
+  updateUserDetails( usernameIn: string, newUsernameIn: string, newEmailIn: string){
+    return this.http.post(URL + '?class=Users&func=updateUserDetails', { username: usernameIn, newUsername: newUsernameIn, newEmail: newEmailIn});
   }
 
 }

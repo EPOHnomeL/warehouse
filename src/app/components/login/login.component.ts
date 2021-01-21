@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiResponse, ApiService } from 'src/app/services/api.service';
-import { UserState, UserStateService } from 'src/app/state/user-state.service';
-import { RegistrationDetails } from '../register/register.component';
+import { UserStateService } from 'src/app/state/user-state.service';
+import { User } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +11,7 @@ import { RegistrationDetails } from '../register/register.component';
 })
 export class LoginComponent implements OnInit {
 
-  user: RegistrationDetails = {
+  user: User = {
     username: '',
     email: '',
     password: '',
@@ -37,12 +37,12 @@ export class LoginComponent implements OnInit {
         return;
       }
       // Set user state
-      this.userStateService.userState = {
+      this.userStateService.setUserState({
         username : response.values['username'],
         token : response.values['token'], 
         email: response.values['email'],
         isLogin : true,
-      };   
+      });   
 
       alert(response.message);  // TODO remove
       // Navigate to products

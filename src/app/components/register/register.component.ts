@@ -3,11 +3,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ApiService, ApiResponse } from '../../services/api.service';
 
-export interface RegistrationDetails {
+export interface User {
   username: string;
-  email: string;
-  password: string;
-  role: string;
+  newUsername?: string;
+  email?: string;
+  newEmail?: string;
+  password?: string;
+  role?: string;
+  token?: string;
+  isLogin?: boolean;
 }
 
 @Component({
@@ -20,7 +24,7 @@ export class RegisterComponent implements OnInit {
   confPass = '';
   confEmail = '';
 
-  user: RegistrationDetails = {
+  user: User = {
     username: '',
     email: '',
     password: '',
