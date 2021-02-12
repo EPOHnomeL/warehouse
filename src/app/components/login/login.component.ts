@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiResponse, ApiService } from 'src/app/services/api.service';
+import { ApiService } from 'src/app/services/api.service';
+import { ApiResponse, User } from 'src/app/shared/types';
 import { UserStateService } from 'src/app/state/user-state.service';
-import { User } from '../register/register.component';
 
 @Component({
   selector: 'app-login',
@@ -23,28 +23,30 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(){
+  loginUser(){
     if (!this.validate()){  // Early exit when validation fails
       return;
     }
 
-    const request$ = this.apiService.login(this.user);
+    const request$ = this.apiService.post(this.user, 'Admin', 'login');
 
-    request$.subscribe((response: any) =>{
+    request$.subscribe((response: ApiResponse) =>{
       // Error handling
       if(!response.success){
         alert(response.message);
         return;
       }
+
+      window.localStorage.token = response.values.token;
+
       // Set user state
       this.userStateService.setUserState({
-        username : response.values['username'],
-        token : response.values['token'], 
-        email: response.values['email'],
+        username : response.values.username,
+        token : response.values.token, 
+        email: response.values.email,
         isLogin : true,
       });   
 
-      alert(response.message);  // TODO remove
       // Navigate to products
       this.router.navigateByUrl("/profile");
     });

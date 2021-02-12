@@ -10,7 +10,10 @@ export class AuthGuardService {
   constructor( private userStateService: UserStateService, private router: Router) { }
 
   canActivate(): boolean{
-
+    if (!this.userStateService.userState$.value["isLogin"]) {
+      this.router.navigateByUrl("/home");
+      return false;
+    }
     return true;
   }
 }

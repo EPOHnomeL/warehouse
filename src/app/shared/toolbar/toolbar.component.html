@@ -1,8 +1,18 @@
 <mat-toolbar color="primary">
-    <a routerLink="/home-page" routerLinkActive="active"><span>Warehouse</span></a>
+    
+    <span>Warehouse</span>
+    <div layout="row" class="divider"></div>
+    <a routerLink="/home" routerLinkActive="active">
+        <button mat-raised-button color="accent">Home</button>
+    </a>
+    <div layout="row" class="divider"></div>
+    <a routerLink="/profile" routerLinkActive="active" *ngIf="user.isLogin">
+        <button mat-raised-button color="accent">Profile</button>
+    </a>
+
     <span class="spacer"></span>
 
-    <div layout="row" layout-align="center center" *ngIf="!isLogin">        
+    <div layout="row" layout-align="center center" *ngIf="!user.isLogin">        
         
         <a routerLink="/login" routerLinkActive="active">
             <button mat-raised-button color="accent">Log In</button>
@@ -15,10 +25,10 @@
         </a>
     </div>
 
-    <div layout="row" layout-align="center center" *ngIf="isLogin">        
+    <div layout="row" layout-align="center center" *ngIf="user.isLogin">        
         
         <a routerLink="/profile" routerLinkActive="active">
-            <span>Logged in as: {{username}}</span>
+            <span>Logged in as: {{user.username}}</span>
         </a>      
         
         <div layout="row" class="divider"></div>

@@ -1,18 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ApiService, ApiResponse } from '../../services/api.service';
-
-export interface User {
-  username: string;
-  newUsername?: string;
-  email?: string;
-  newEmail?: string;
-  password?: string;
-  role?: string;
-  token?: string;
-  isLogin?: boolean;
-}
+import { ApiResponse, User } from 'src/app/shared/types';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-register',
@@ -41,30 +31,19 @@ export class RegisterComponent implements OnInit {
       return;
     }
     
-    const request$ = this.apiService.createUser(this.user);
+    const request$ = this.apiService.post(this.user, 'Users', 'createUser');
 
-    request$.subscribe((response: any) => {  // TODO ApiResponse 
+    request$.subscribe((response: ApiResponse) => { 
       if(!response.success){
         alert(response.message);
         return;
       }
     });
-    
-    alert("User successfully created");
-    this.router.navigateByUrl('/login'); // go to login page
+    this.router.navigateByUrl('/login'); // Go to login page
   }
 
   // Validates all user input
   validate(){
-    if(this.user.username === '' ||
-      this.user.password === '' ||
-      this.user.email === '' ||
-      this.confEmail === '' || 
-      this.confPass === ''){
-        alert("Please fill in all forms");
-        return false;   
-       }
-
     if (this.confEmail !== this.user.email){ 
       alert("Emails do not match");
       return false;
