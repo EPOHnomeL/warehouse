@@ -12,8 +12,8 @@ export class ApiService {
   constructor( private http: HttpClient ) {}
   // Create an observable(service), subscribe(components) to it.
 
-  post(obj: any, classIn: string, funcIn: string): any{
-    return this.http.post(URL + `?class=${classIn}&func=${funcIn}`, obj);
+  post(objIn: any, classIn: string, funcIn: string): any{
+    return this.http.post(URL + `?class=${classIn}&func=${funcIn}`, objIn);
   }
 
 }

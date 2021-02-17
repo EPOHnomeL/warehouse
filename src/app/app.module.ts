@@ -14,8 +14,9 @@ import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { ProductsComponent } from './components/products/products.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { AddproductsComponent } from './components/addproducts/addproducts.component';
+import { ViewproductsComponent } from './components/viewproducts/viewproducts.component';
 
 
 
@@ -27,8 +28,9 @@ import { ProfileComponent } from './components/profile/profile.component';
     FooterComponent,
     RegisterComponent,
     LoginComponent,
-    ProductsComponent,
     ProfileComponent,
+    AddproductsComponent,
+    ViewproductsComponent,
   ],
   imports: [
     BrowserModule,

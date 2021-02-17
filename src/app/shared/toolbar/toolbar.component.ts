@@ -25,6 +25,7 @@ export class ToolbarComponent implements OnInit {
 
   logoutClick(){
 
+    // Send request to logout
     const request$ = this.apiService.post( this.user, 'Admin', 'logout' );
 
     request$.subscribe((response: ApiResponse) => {
@@ -33,6 +34,8 @@ export class ToolbarComponent implements OnInit {
         return;
       }
 
+      // Clear local storage
+      window.localStorage.clear();
       // Clear user state
       this.userStateService.clearUserState();
       // Navigate to home

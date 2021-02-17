@@ -2,7 +2,6 @@
 <div>
     <form #registerform="ngForm" (ngSubmit)="loginUser()">
     <mat-card id="card">
-        <h3>Log In</h3>
         <mat-card-content>
             <mat-form-field>
                 <input matInput
@@ -10,7 +9,7 @@
                     id="username" 
                     [(ngModel)]="user.username"
                     name="username" 
-                    placeholder="Username">
+                    placeholder="Username" required>
             </mat-form-field><br/>
 
             <mat-form-field>
@@ -19,7 +18,7 @@
                     id="password" 
                     [(ngModel)]="user.password"
                     name="name" 
-                    placeholder="Password">
+                    placeholder="Password" required>
             </mat-form-field><br/>
             <button mat-raised-button color="accent" type="submit">Log In</button>
         </mat-card-content>

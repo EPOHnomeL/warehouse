@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
 
   constructor( private userStateService: UserStateService, private apiService: ApiService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // Initialize variables
     this.userStateService.userState$.subscribe((user: User) => { 
       this.user = user;
@@ -37,10 +37,15 @@ export class ProfileComponent implements OnInit {
         return;
       }
 
+      // Set user object's properties to the updated properties
       this.user.username = this.user.newUsername!;
       this.user.email = this.user.newEmail;
+      // Clear variables
       this.user.newUsername = '';
       this.user.newEmail = '';
+      // Update the local storage
+      window.localStorage.setItem('username', this.user.username);
+      // Set the userstate
       this.userStateService.setUserState(this.user);
 
       alert(response.message);

@@ -1,0 +1,35 @@
+<h1>Add a product</h1>
+<div>
+    <form #registerform="ngForm" (ngSubmit)="addProduct()">
+    <mat-card id="card">
+        <mat-card-content>
+            <mat-form-field>
+                <input matInput
+                    type="text"
+                    id="productName" 
+                    [(ngModel)]="product.name"
+                    name="productName" 
+                    placeholder="Product Name">
+            </mat-form-field><br/>
+
+            <mat-form-field>
+                <mat-label>Product Category</mat-label>
+                <mat-select [(value)]="product.category" >
+                  <mat-option *ngFor="let key of keys; index as i" [value]="productCategories[i]">{{productCategories[i]}}</mat-option>
+                </mat-select>
+              </mat-form-field><br>
+
+              <mat-form-field>
+                <input matInput
+                    type="number"
+                    id="productQuantity" 
+                    [(ngModel)]="product.quantity"
+                    name="productQuantity" 
+                    placeholder="Product Quantity"
+                    (change)="onChange()">
+            </mat-form-field><br/>
+            <button mat-raised-button color="accent" type="submit">Add Product</button>
+        </mat-card-content>
+    </mat-card>        
+    </form>
+</div>

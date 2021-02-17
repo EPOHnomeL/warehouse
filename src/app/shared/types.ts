@@ -14,4 +14,17 @@ export interface ApiResponse {
     message: string;
     values: any;
 }
+
+export enum ProductCategories{
+    Food,
+    Clothes,
+    Medicine,
+    Household
+}
+
+export interface Product {
+    name: string;
+    category: ProductCategories;
+    quantity: number;
+ }
   

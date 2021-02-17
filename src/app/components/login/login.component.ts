@@ -37,6 +37,8 @@ export class LoginComponent implements OnInit {
         return;
       }
 
+      // Set the local storage varibles TODO move to state
+      window.localStorage.username = response.values.username;
       window.localStorage.token = response.values.token;
 
       // Set user state
@@ -48,7 +50,7 @@ export class LoginComponent implements OnInit {
       });   
 
       // Navigate to products
-      this.router.navigateByUrl("/profile");
+      this.router.navigateByUrl("/home");
     });
   }
 

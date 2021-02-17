@@ -1,8 +1,10 @@
-<app-toolbar></app-toolbar>
+<div *ngIf="isLoaded">
+    <app-toolbar></app-toolbar>
 
-<div class="main">
-    <router-outlet></router-outlet>
-</div>   
+    <div class="main">
+        <router-outlet></router-outlet>
+    </div>   
 
 
-<app-footer></app-footer>
+    <app-footer></app-footer>
+</div>
